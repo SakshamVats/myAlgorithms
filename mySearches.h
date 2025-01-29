@@ -1,0 +1,39 @@
+#pragma once
+
+#include <iostream>
+#include <vector>
+
+int myLinearSearch(const std::vector<int>& arr, int key)
+{
+	for (int index{ 0 }; index < arr.size(); ++index)
+	{
+		if (key == arr[index])
+			return index;
+	}
+
+	return -1;
+}
+
+int myBinarySearch(const std::vector<int>& arr, int key)
+{
+	int size{ static_cast<int>(arr.size()) };
+
+	int max{size - 1};
+	int min{0};
+
+	while (min <= max)
+	{
+		int middle{ (min + max) / 2 };
+		
+		if (key == arr[middle])
+			return middle;
+
+		else if (key > arr[middle])
+			min = middle + 1;
+
+		else
+			max = middle - 1;
+	}
+
+	return -1;
+}
