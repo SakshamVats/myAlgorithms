@@ -9,4 +9,6 @@
  2. Binary Search				(implemented using STL)
  3. Interpolation Search    	(implemented using STL)
  
- 4. Insertion Sort				(implemented using STL)			
+ 4. Insertion Sort				(implemented using STL)	
+ 5. Bubble Sort					(implemented using STL)
+ 6. Selection Sort				(implemented using STL)
