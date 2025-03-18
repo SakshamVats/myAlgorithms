@@ -1,7 +1,4 @@
-#pragma once
-
-#include <iostream>
-#include <vector>
+#include "includes/mySorts.h"
 
 std::vector<int>& myInsertionSort(std::vector<int>& arr)
 {
@@ -26,7 +23,7 @@ std::vector<int>& myBubbleSort(std::vector<int>& arr)
 {
 	int n = static_cast<int>(arr.size());
 
-	for (int index{0}; index < n - 1; ++index)
+	for (int index{ 0 }; index < n - 1; ++index)
 	{
 		int lastSorted{ 1 };
 

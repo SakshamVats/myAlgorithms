@@ -1,7 +1,4 @@
-#pragma once
-
-#include <iostream>
-#include <vector>
+#include "includes/mySearches.h"
 
 int myLinearSearch(const std::vector<int>& arr, int key)
 {
@@ -18,13 +15,13 @@ int myBinarySearch(const std::vector<int>& arr, int key)
 {
 	int size{ static_cast<int>(arr.size()) };
 
-	int max{size - 1};
-	int min{0};
+	int max{ size - 1 };
+	int min{ 0 };
 
 	while (min <= max)
 	{
 		int middle{ (min + max) / 2 };
-		
+
 		if (key == arr[middle])
 			return middle;
 
