@@ -37,6 +37,8 @@ void testGraphAlgs()
 	sakshamsGraph.addEdge(1, 2);
 	sakshamsGraph.addEdge(1, 3);
 
+	//sakshamsGraph.printGraph();
+
 	std::vector<int> dfsResult{ depthFirstSearch(sakshamsGraph) };
 
 	std::cout << "Depth First Search Result:\n";
@@ -48,6 +50,15 @@ void testGraphAlgs()
 
 	std::cout << "Breadth First Search Result:\n";
 	for (int i : bfsResult)
-		std::cout << i << ' ';
+		std::cout << i << ' ';\
 	std::cout << '\n';
+
+	WeightedGraph sWGraph(4);
+	sWGraph.addEdge(0, 1, 3);
+	sWGraph.addEdge(0, 2, 6);
+	sWGraph.addEdge(1, 2, 2);
+	sWGraph.addEdge(1, 3, 5);
+
+
+	dijkstra(sWGraph, 0);
 }

@@ -25,7 +25,7 @@ public:
 		}
 	}
 
-	int size()
+	int size() const
 	{
 		return m_size;
 	}
@@ -109,7 +109,7 @@ public:
 		return -1;
 	}
 
-	void print()
+	void print() const
 	{
 		if (!m_size)
 		{
@@ -128,8 +128,88 @@ public:
 		std::cout << "null\n";
 	}
 
-	IntNode* getHead()
+	IntNode* getHead() const
 	{
 		return m_head;
+	}
+};
+
+struct WeightedIntNode
+{
+	int vertex{ 0 };
+	int weight{ 1 };
+	WeightedIntNode* next{ nullptr };
+};
+
+class WeightedIntLinkedList
+{
+private:
+	WeightedIntNode* m_head{};
+	int m_size{ 0 };
+
+public:
+	~WeightedIntLinkedList()
+	{
+		while (m_head)
+		{
+			WeightedIntNode* temp{ m_head };
+			m_head = m_head->next;
+			delete temp;
+		}
+	}
+
+	void insertAtHead(int vertex, int weight)
+	{
+		WeightedIntNode* newNode{ new WeightedIntNode{vertex, weight} };
+
+		newNode->next = m_head;
+		m_head = newNode;
+
+		++m_size;
+	}
+
+	void insertAtTail(int vertex, int weight)
+	{
+		WeightedIntNode* newNode{ new WeightedIntNode{vertex, weight} };
+
+		if (!m_head)
+		{
+			m_head = newNode;
+			++m_size;
+			return;
+		}
+
+		WeightedIntNode* curr{ m_head };
+
+		while (curr->next)
+		{
+			curr = curr->next;
+		}
+
+		curr->next = newNode;
+		++m_size;
+	}
+
+	void print() const
+	{
+		WeightedIntNode* curr{ m_head };
+
+		while (curr)
+		{
+			std::cout << "(" << curr->vertex << ", " << curr->weight << ") -> ";
+			curr = curr->next;
+		}
+
+		std::cout << "null\n";
+	}
+
+	WeightedIntNode* getHead() const
+	{
+		return m_head;
+	}
+
+	int size() const
+	{
+		return m_size;
 	}
 };

@@ -6,7 +6,7 @@ void dfsHelper(int node, Graph& graph,
 	visited.insert(node);
 	result.push_back(node);
 
-	IntLinkedList& neighbours{ graph.getAdjList()[node] };
+	const IntLinkedList& neighbours{ graph.getAdjList()[node] };
 
 	IntNode* curr{ neighbours.getHead() };
 
@@ -57,7 +57,7 @@ std::vector<int> breadthFirstSearch(Graph& graph)
 			q.pop();
 			result.push_back(fNode);
 
-			IntLinkedList& neighbours{ graph.getAdjList()[fNode] };
+			const IntLinkedList& neighbours{ graph.getAdjList()[fNode] };
 			IntNode* curr{ neighbours.getHead() };
 
 			while (curr)
@@ -74,3 +74,47 @@ std::vector<int> breadthFirstSearch(Graph& graph)
 
 	return result;
 }
+
+void dijkstra(const WeightedGraph& graph, int start)
+{
+	int vertices = graph.getVertices();
+	std::vector<int> dist(vertices, std::numeric_limits<int>::max());
+	dist[start] = 0;
+
+	std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>, std::greater<>> pq{};
+	pq.push({ 0, start });
+
+	const std::vector<WeightedIntLinkedList>& adjList = graph.getAdjList();
+
+	while (!pq.empty())
+	{
+		int currentDist = pq.top().first;
+		int currentVertex = pq.top().second;
+		pq.pop();
+
+		if (currentDist > dist[currentVertex]) 
+			continue;
+
+		WeightedIntNode* neighbor = adjList[currentVertex].getHead();
+		while (neighbor)
+		{
+			int newDist = currentDist + neighbor->weight;
+
+			if (newDist < dist[neighbor->vertex])
+			{
+				dist[neighbor->vertex] = newDist;
+				pq.push({ newDist, neighbor->vertex });
+			}
+
+			neighbor = neighbor->next;
+		}
+	}
+
+	std::cout << "Shortest distances from vertex " << start << ":\n";
+	for (int i = 0; i < vertices; ++i)
+	{
+		std::cout << "Vertex " << i << " : " 
+			<< (dist[i] == std::numeric_limits<int>::max() ? -1 : dist[i]) << "\n";
+	}
+}
+
