@@ -5,7 +5,7 @@
 #include <vector>
 #include <queue>
 #include <limits>
-#include "includes/myGraph.h"
+#include "myGraph.h"
 
 std::vector<int> depthFirstSearch(Graph& graph);
 std::vector<int> breadthFirstSearch(Graph& graph);
